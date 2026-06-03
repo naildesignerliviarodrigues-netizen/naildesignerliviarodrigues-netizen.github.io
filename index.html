@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Lívia Rodrigues</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="app">
+
+    <!-- TELA INICIAL -->
+    <section class="screen active" id="homeScreen">
+
+        <section class="card profile-card">
+            <img src="assets/logo.png" alt="Logo Studio Lívia Rodrigues" class="logo">
+
+            <h1>Studio Lívia Rodrigues</h1>
+
+            <div class="subtitle">
+                <span></span>
+                <strong>Nail Designer</strong>
+                <span></span>
+            </div>
+
+            <div class="rating-row">
+    <strong>4,9/5</strong>
+    <img src="assets/stars_5_gold.png" alt="5 estrelas" class="stars">
+    <span style="color:#d85a9d; font-weight:700;">|</span>
+    <strong>+500 atendimentos</strong>
+</div>
+
+            <div class="deposit-row">
+                <img src="assets/icon_discount.png" alt="Sinal Pix">
+                <p>Reserve com <b>30% de sinal via Pix.</b></p>
+            </div>
+        </section>
+
+        <section class="card info-card">
+            <img src="assets/icon_clock.png" alt="Funcionamento" class="info-icon">
+            <div>
+                <h2>Funcionamento</h2>
+                <p>
+                    <b>Terça a sexta</b> • 07:30 às 17:30<br>
+                    <span>Intervalo • 11:30 às 13:00</span><br>
+                    <b>Sábado</b> • 07:30 às 16:00<br>
+                    <span>Atendimento direto, sem pausa para almoço</span>
+                </p>
+            </div>
+        </section>
+
+        <button class="primary-btn home-main-btn" id="btnSchedule">
+            <img src="assets/icon_calendar.png" alt="Agendar">
+            AGENDAR HORÁRIO
+        </button>
+
+        <button class="dark-btn home-main-btn" id="btnMyAppointments">
+            MEUS AGENDAMENTOS
+        </button>
+
+        <section class="card instagram-card" id="btnInstagram">
+            <img src="assets/instagram_icon_final.png" alt="Instagram">
+            <div>
+                <h2>Instagram</h2>
+                <p>@liviarodrigues_studio</p>
+            </div>
+            <strong class="arrow">›</strong>
+        </section>
+
+        <section class="card works-card">
+            <h2>Trabalhos recentes</h2>
+
+            <div class="works-grid">
+                <img src="assets/trabalho_1.png" alt="Trabalho recente 1" class="work-photo" data-index="0">
+                <img src="assets/trabalho_2.png" alt="Trabalho recente 2" class="work-photo" data-index="1">
+                <img src="assets/trabalho_3.png" alt="Trabalho recente 3" class="work-photo" data-index="2">
+            </div>
+        </section>
+
+
+        <section class="card address-card">
+            <div class="address-title">
+                <span class="pin">📍</span>
+                <h2>Endereço</h2>
+            </div>
+
+            <p>Galeria Santos, Rua Aurora<br>Glória, Vila Velha - ES</p>
+
+            <button class="secondary-btn" id="btnMap">
+                <img src="assets/maps_icon.png" alt="Mapa">
+                COMO CHEGAR
+            </button>
+        </section>
+
+
+    </section>
+
+    <!-- TELA DE SERVIÇOS -->
+    <section class="screen" id="servicesScreen">
+
+        <h1 class="page-title">Escolha o serviço</h1>
+        <p class="page-subtitle">Toque no procedimento desejado para continuar.</p>
+
+        <div id="servicesList"></div>
+
+        <button class="dark-btn" id="btnBackHome">
+            VOLTAR
+        </button>
+
+    </section>
+
+    <!-- TELA DE DATAS -->
+    <section class="screen" id="dateScreen">
+
+        <h1 class="page-title">Escolha a data</h1>
+        <p class="page-subtitle">Toque no melhor dia para ver os horários disponíveis.</p>
+
+        <section class="summary-mini">
+            <strong id="dateServiceName">Gel na tips</strong>
+            <span id="dateServiceDuration">Duração: 1h30 a 2h • Sinal 30%</span>
+        </section>
+
+        <div class="date-grid" id="dateList"></div>
+
+        <p class="manual-date-title">Ou digite outra data:</p>
+        <input class="manual-date-input" id="customDateInput" inputmode="numeric" placeholder="DD/MM/AAAA" maxlength="10">
+
+        <button class="primary-btn" id="btnCustomDate">
+            VER HORÁRIOS DISPONÍVEIS
+        </button>
+
+        <button class="dark-btn" id="btnBackServices">
+            VOLTAR
+        </button>
+
+    </section>
+
+    <!-- TELA DE HORÁRIOS -->
+    <section class="screen" id="slotsScreen">
+
+        <h1 class="page-title">Horários disponíveis</h1>
+        <p class="page-subtitle" id="slotsSubtitle">Data escolhida • serviço</p>
+
+        <div class="legend-card compact-legend">
+            <div><span class="legend-dot pink-dot"></span> Rosa = Disponível</div>
+            <div><span class="legend-dot yellow-dot"></span> Dourado = Reserva temporária</div>
+            <div><span class="legend-dot green-dot"></span> Verde = Confirmado</div>
+            <div><span class="legend-dot dark-dot"></span> Escuro = Indisponível / almoço</div>
+        </div>
+
+        <div class="time-grid" id="timeList"></div>
+
+        <p class="helper-text">Toque apenas nos horários disponíveis em rosa para continuar.</p>
+
+        <button class="dark-btn" id="btnBackDate">
+            VOLTAR
+        </button>
+
+    </section>
+
+
+    <!-- TELA DADOS DA CLIENTE -->
+    <section class="screen" id="clientScreen">
+
+        <h1 class="page-title">Dados da cliente</h1>
+        <p class="page-subtitle">Preencha os dados para finalizar a reserva.</p>
+
+        <input class="form-input" id="clientName" placeholder="Nome completo" autocomplete="name">
+        <input class="form-input" id="clientPhone" inputmode="numeric" placeholder="Número com DDD" maxlength="15" autocomplete="tel">
+        <input class="form-input" id="clientCpf" inputmode="numeric" placeholder="CPF para gerar o Pix" maxlength="14">
+
+        <section class="important-card">
+            <strong>Importante</strong>
+            <p>CPF usado somente para gerar o Pix seguro. O pagamento será confirmado automaticamente.</p>
+        </section>
+
+        <button class="primary-btn" id="btnClientContinue">CONTINUAR</button>
+        <button class="dark-btn" id="btnBackSlots">VOLTAR</button>
+
+    </section>
+
+    <!-- TELA RESUMO -->
+    <section class="screen" id="summaryScreen">
+
+        <h1 class="page-title">Resumo</h1>
+
+        <section class="resume-card">
+            <div>
+                <span>Cliente</span>
+                <strong id="summaryClientName">---</strong>
+            </div>
+            <div>
+                <span>Serviço</span>
+                <strong id="summaryServiceName">---</strong>
+            </div>
+            <div>
+                <span>Data e horário</span>
+                <strong id="summaryDateTime">---</strong>
+            </div>
+            <p>Valor total: <strong id="summaryTotal">---</strong></p>
+            <div class="deposit-big">
+                <span>Sinal de 30%</span>
+                <strong id="summaryDeposit">---</strong>
+            </div>
+        </section>
+
+        <section class="note-card">
+            Depois de reservar, esse horário fica bloqueado automaticamente para outra cliente não marcar no mesmo intervalo.
+        </section>
+
+        <button class="primary-btn" id="btnGeneratePix">GERAR PIX E RESERVAR</button>
+        <button class="dark-btn" id="btnBackClient">VOLTAR</button>
+
+    </section>
+
+    <!-- TELA PIX -->
+    <section class="screen" id="pixScreen">
+
+        <h1 class="page-title pix-title">Pagamento do sinal</h1>
+        <p class="page-subtitle pix-subtitle">Pix gerado com segurança. Pague em até 10 minutos para garantir sua reserva.</p>
+
+        <section class="pix-info-card pix-info-modern">
+            <div class="pix-detail-row">
+                <span class="pix-detail-icon">💅</span>
+                <span>Serviço:</span>
+                <strong id="pixServiceName">---</strong>
+            </div>
+
+            <div class="pix-detail-row">
+                <span class="pix-detail-icon">📅</span>
+                <span>Data:</span>
+                <strong id="pixDateTime">---</strong>
+            </div>
+
+            <div class="pix-detail-row pix-value-row">
+                <span class="pix-detail-icon">🏷️</span>
+                <span>Sinal de 30%:</span>
+                <strong id="pixDeposit">---</strong>
+            </div>
+
+            <div class="pix-detail-row">
+                <span class="pix-detail-icon">⏱️</span>
+                <span>Status:</span>
+                <strong>Reserva temporária</strong>
+            </div>
+
+            <div class="pix-detail-row pix-countdown-line">
+                <span class="pix-detail-icon">⌛</span>
+                <span>Tempo para pagar:</span>
+                <strong id="pixCountdown">10:00</strong>
+            </div>
+        </section>
+
+        <section class="pix-payment-panel">
+            <div class="qr-card" id="pixQrBox">
+                <img id="pixQrImg" alt="QR Code Pix" style="display:none;">
+                <div class="qr-fake" aria-label="QR Code Pix visual">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+
+            <div class="pix-safe-card">
+                <strong>🛡️ Pix seguro</strong>
+                <p>Leia o QR Code ou copie o Pix copia e cola.</p>
+                <button class="primary-btn pix-copy-btn" id="btnCopyPix">📋 COPIAR PIX COPIA E COLA</button>
+            </div>
+        </section>
+
+        <section class="how-card pix-how-modern">
+            <strong>Como pagar</strong>
+            <p><span>1</span> Abra o app do seu banco</p>
+            <p><span>2</span> Escolha Pix Copia e Cola ou leia o QR Code</p>
+            <p><span>3</span> Pague o sinal dentro do prazo</p>
+        </section>
+
+        <button class="dark-btn pix-cancel-reserve-btn" id="btnFinish">🗑️ DESISTIR DA RESERVA</button>
+        <p class="pix-security-note">🔒 Ambiente seguro e seus dados estão protegidos.</p>
+
+    </section>
+
+
+
+    <!-- TELA SUCESSO -->
+    <section class="screen" id="successScreen">
+
+        <section class="success-card">
+            <div class="success-icon">✓</div>
+            <h1>Reserva criada!</h1>
+            <p>Seu horário foi reservado temporariamente. Pague o sinal dentro do prazo para garantir o agendamento.</p>
+
+            <div class="success-summary">
+                <span>Serviço</span>
+                <strong id="successService">---</strong>
+                <span>Data e horário</span>
+                <strong id="successDateTime">---</strong>
+            </div>
+        </section>
+
+        <button class="primary-btn home-main-btn" id="btnSuccessMyAppointments">VER MEUS AGENDAMENTOS</button>
+        <button class="dark-btn home-main-btn" id="btnSuccessHome">VOLTAR AO INÍCIO</button>
+
+    </section>
+
+    <!-- TELA MEUS AGENDAMENTOS -->
+    <section class="screen" id="myAppointmentsScreen">
+
+        <h1 class="page-title">Meus agendamentos</h1>
+        <p class="page-subtitle">Consulte sua reserva usando o mesmo CPF ou telefone informado no agendamento.</p>
+
+        <section class="lookup-card">
+            <div class="lookup-icon">📅</div>
+            <div>
+                <strong>Consultar reserva</strong>
+                <p>Veja status, data, horário e valor do sinal.</p>
+            </div>
+        </section>
+
+        <input class="form-input" id="lookupCpf" inputmode="numeric" placeholder="Digite seu CPF" maxlength="14">
+        <input class="form-input" id="lookupPhone" inputmode="numeric" placeholder="Ou número com DDD" maxlength="15">
+
+        <button class="primary-btn" id="btnLookupAppointments">CONSULTAR AGENDAMENTO</button>
+
+        <div id="appointmentsResult" class="appointments-result"></div>
+
+        <section class="appointments-help-card">
+            <strong>Dica</strong>
+            <p>Após gerar o Pix, sua reserva aparece aqui como <b>Reserva temporária</b> até a confirmação do pagamento.</p>
+        </section>
+
+        <button class="dark-btn" id="btnBackHomeFromAppointments">VOLTAR</button>
+
+    </section>
+
+
+
+    <!-- PAINEL DA LÍVIA -->
+    <section class="screen" id="adminScreen">
+
+        <h1 class="page-title">Painel da Lívia</h1>
+        <p class="page-subtitle">Acompanhe reservas, pagamentos e agenda do estúdio.</p>
+
+        <button class="dark-btn admin-photo-btn" id="btnAdminPhotos">GERENCIAR FOTOS</button>
+
+        <div class="admin-stats-grid">
+            <section class="admin-stat">
+                <strong id="adminActiveCount">0</strong>
+                <span>Ativos</span>
+            </section>
+            <section class="admin-stat">
+                <strong id="adminTempCount">0</strong>
+                <span>Temporárias</span>
+            </section>
+            <section class="admin-stat danger">
+                <strong id="adminCanceledCount">0</strong>
+                <span>Cancelados</span>
+            </section>
+        </div>
+
+        <section class="admin-card">
+            <h2>Financeiro</h2>
+            <div class="admin-money-grid">
+                <div><span>Hoje</span><strong id="adminMoneyToday">R$ 0,00</strong></div>
+                <div><span>7 dias</span><strong id="adminMoneyWeek">R$ 0,00</strong></div>
+                <div><span>Mês</span><strong id="adminMoneyMonth">R$ 0,00</strong></div>
+            </div>
+            <p class="admin-line" id="adminFinanceLine">Confirmados: 0 | Temporárias: 0 | Expirados: 0</p>
+        </section>
+
+        <section class="admin-card">
+            <h2>Agenda de hoje</h2>
+            <p class="admin-line" id="adminTodayLine">Hoje • 0 atendimento(s) • R$ 0,00 confirmados</p>
+            <div id="adminTodayList" class="admin-list"></div>
+        </section>
+
+        <section class="admin-card">
+            <h2>Resumo administrativo</h2>
+            <div class="admin-summary-grid">
+                <div><strong id="adminConfirmedCount">0</strong><span>Confirmados</span></div>
+                <div><strong id="adminSummaryTempCount">0</strong><span>Temporárias</span></div>
+                <div><strong id="adminExpiredCount">0</strong><span>Expirados</span></div>
+                <div><strong id="adminSummaryCanceledCount">0</strong><span>Cancelados</span></div>
+            </div>
+            <p class="admin-line" id="adminSignalsLine">Sinais confirmados: R$ 0,00 | Sinais temporários: R$ 0,00</p>
+        </section>
+
+        <section class="admin-card">
+            <h2>Todos os agendamentos</h2>
+            <div class="admin-filter-row">
+                <button class="admin-filter active" data-admin-filter="all">Todos</button>
+                <button class="admin-filter" data-admin-filter="temporary">Temporárias</button>
+                <button class="admin-filter" data-admin-filter="confirmed">Confirmados</button>
+                <button class="admin-filter" data-admin-filter="expired">Expirados</button>
+            </div>
+            <div id="adminBookingsList" class="admin-bookings-list"></div>
+        </section>
+
+        <button class="dark-btn" id="btnAdminBackHome">VOLTAR</button>
+
+    </section>
+
+    <!-- FOTOS ADMIN -->
+    <section class="screen" id="adminPhotosScreen">
+
+        <h1 class="page-title">Fotos dos trabalhos</h1>
+        <p class="page-subtitle">Adicione fotos do celular para aparecer em Trabalhos recentes.</p>
+
+        <input type="file" accept="image/*" id="adminPhotoInput" hidden>
+        <button class="primary-btn" id="btnAddAdminPhoto">ADICIONAR FOTO DO CELULAR</button>
+
+        <h2 class="admin-section-title">Fotos cadastradas</h2>
+        <div id="adminPhotosList" class="admin-photos-list"></div>
+
+        <button class="dark-btn" id="btnBackAdminFromPhotos">VOLTAR</button>
+
+    </section>
+
+</main>
+
+<!-- MODAL DE FOTO -->
+<div class="photo-modal" id="photoModal">
+    <div class="photo-modal-content">
+        <div class="modal-title" id="photoCounter">Foto 1 de 3</div>
+        <img src="assets/trabalho_1.png" alt="Foto ampliada" id="modalImage">
+        <div class="modal-actions">
+            <button id="prevPhoto">ANTERIOR</button>
+            <button id="closePhoto">FECHAR</button>
+            <button id="nextPhoto">PRÓXIMA</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL GERANDO PIX -->
+<div class="loading-modal" id="loadingModal">
+    <div class="loading-box">
+        <div class="loading-title">Processando</div>
+        <div class="loading-line"></div>
+        <strong>Gerando Pix seguro...</strong>
+        <p>Aguarde alguns segundos.<br>Não feche o aplicativo.</p>
+    </div>
+</div>
+
+
+
+
+<!-- MODAL LOGIN ADMIN -->
+<div class="admin-login-modal" id="adminLoginModal">
+    <div class="admin-login-box">
+        <div class="admin-login-icon">LR</div>
+        <strong>Painel da Lívia</strong>
+        <p>Digite a senha para acessar a área administrativa.</p>
+        <input type="password" id="adminPasswordInput" placeholder="Senha do painel">
+        <button class="primary-btn" id="btnAdminLoginConfirm">ENTRAR NO PAINEL</button>
+        <button class="dark-btn" id="btnAdminLoginCancel">CANCELAR</button>
+    </div>
+</div>
+
+<!-- MODAL CANCELAR AGENDAMENTO -->
+<div class="confirm-modal" id="cancelModal">
+    <div class="confirm-box">
+        <div class="confirm-icon">!</div>
+        <strong>Cancelar agendamento?</strong>
+        <p>Esse horário será liberado novamente para outra cliente marcar.</p>
+        <div class="confirm-actions">
+            <button class="confirm-secondary" id="btnCancelNo">VOLTAR</button>
+            <button class="confirm-danger" id="btnCancelYes">SIM, CANCELAR</button>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
