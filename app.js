@@ -1042,7 +1042,7 @@ function startAppointmentsRealtime(){
     appointmentsRealtimeTimer = setInterval(() => {
         loadAppointmentsFromFirebase();
         loadBlockedSlotsFromFirebase();
-    }, 5000);
+    }, 1000);
 }
 
 
@@ -1391,7 +1391,7 @@ document.getElementById("btnGeneratePix").addEventListener("click", () => {
         createTemporaryAppointment();
         showScreen("pix");
         startPixCountdown();
-    }, 1300);
+    }, 100);
 });
 
 document.getElementById("btnCopyPix").addEventListener("click", async () => {
